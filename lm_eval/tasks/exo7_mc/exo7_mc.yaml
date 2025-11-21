@@ -1,0 +1,72 @@
+task: math_multilabel_fr_mc2_fewshot
+dataset_path: exo7_mc
+dataset_name: null
+
+output_type: multiple_choice
+training_split: null
+validation_split: null
+test_split: test
+
+
+doc_to_text: |
+
+  Question :
+  Soient $f,g$ deux fonctions définies sur $\Rr$. Quelles sont les assertions vraies ?
+
+  A. $f - 2g$ est une fonction définie sur $\Rr$
+  B. $f^2 \times g$ est une fonction définie sur $\Rr$
+  C. $\frac{f}{g^2}$ est une fonction définie sur $\Rr$
+  D. $\sqrt{f+g}$ est une fonction définie sur $\Rr$
+
+  Réponse : A, B
+
+
+  Question :
+  Parmi les affirmations suivantes, lesquelles n'ont aucun sens (c'est-à-dire ne sont pas correctes au niveau du langage mathématique) ?
+
+  A. Dans certaines circonstances, on a $\mathbb{P}(A\cup B)=\mathbb{P}(A)\cup\mathbb{P}(B)$.
+  B. Si $C$ est un autre événement impliqué par $A$, on a $A\cup C\cap B = A\cap B$.
+  C. On a $A\subset A+B$.
+  D. $\{A,B\} \subset \Omega$.
+
+  Réponse : A, B, C, D
+
+  Question : 
+  Etant donné que $\displaystyle f(3)=1$ et $f'(3)=5$. Une équation de la tangente à $\mathcal{C}_f$ au point $(3,1)$ est :
+  A. $y=1(x-3)+5=x+2$
+  B. $y=1(x-3)-5=x-8$
+  C. $y=5(x-3)-1=5x-16$
+  D. $y=5(x-3)+1=5x-14$
+
+  Réponse : D
+
+  Question :
+  {{question}}
+
+  {% set letters = ["A","B","C","D","E"] %}
+  {% for c in targets.choices %}
+  {{ letters[loop.index0] }}. {{ c }}
+  {% endfor %}
+
+  Réponse :
+
+# Required for multiple_choice output_type
+doc_to_choice: "{{ targets.choices }}"
+
+# Not used (scoring handled in process_results)
+doc_to_target: 0
+
+# TruthfulQA-style MC2 metric: log-likelihood → probability mass
+process_results: !function utils.process_results_mc2
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+
+metadata:
+  version: 1.0
+  description: >
+    French math multi-label multiple-choice benchmark using 
+    few-shot prompting and TruthfulQA-style MC2 probability scoring.
+
