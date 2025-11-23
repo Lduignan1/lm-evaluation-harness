@@ -87,7 +87,7 @@ doc_to_choice: "{{ targets.choices }}"
 doc_to_target: 0
 
 # TruthfulQA-style MC2 metric: log-likelihood → probability mass
-process_results: !function utils.process_results
+process_results:  !function utils.process_results
 
 metric_list:
   - metric: acc
