@@ -1,14 +1,35 @@
-task: math_multilabel_fr_mc2_fewshot
-dataset_path: exo7_mc
-dataset_name: null
+task: exo7_mc
+dataset_path: LDuignan1/exo7_mc
+dataset_kwargs: 
+  data_dir: /home/data/dataset/openllm/exo7/huggingface/exo7_mc
 
 output_type: multiple_choice
-training_split: null
-validation_split: null
 test_split: test
 
 
+# doc_to_text: 'Question : {{question}}
+
+#   {% set letters = ["A","B","C","D","E"] %}
+#   {% for c in targets.choices %}
+#   {{ letters[loop.index0] }}. {{ c }}
+#   {% endfor %}
+
+#   Réponse :'
+
+# fewshot_config:
+#   sampler: first_n
+#   samples:
+#   - question: Soient $f,g$ deux fonctions définies sur $\Rr$. Quelles sont les assertions vraies ? A. $f - 2g$ est une fonction définie sur $\Rr$ B. $f^2 \times g$ est une fonction définie sur $\Rr$ C. $\frac{f}{g^2}$ est une fonction définie sur $\Rr$ D. $\sqrt{f+g}$ est une fonction définie sur $\Rr$"
+#     answers: A, B
+#   - question: Parmi les affirmations suivantes, lesquelles n'ont aucun sens (c'est-à-dire ne sont pas correctes au niveau du langage mathématique) ? A. Dans certaines circonstances, on a $\mathbb{P}(A\cup B)=\mathbb{P}(A)\cup\mathbb{P}(B)$. B. Si $C$ est un autre événement impliqué par $A$, on a $A\cup C\cap B = A\cap B$. C. On a $A\subset A+B$. D. $\{A,B\} \subset \Omega$.
+#     answers: A, B, C, D
+#   - question: Etant donné que $\displaystyle f(3)=1$ et $f'(3)=5$. Une équation de la tangente à $\mathcal{C}_f$ au point $(3,1)$ est : A. $y=1(x-3)+5=x+2$ B. $y=1(x-3)-5=x-8$ C. $y=5(x-3)-1=5x-16$ D. $y=5(x-3)+1=5x-14$
+#     answers : D
+
+
 doc_to_text: |
+
+  Pour les questions suivantes, il peut y avoir plusieurs bonnes réponses. Choisissez une seule bonne réponse possible.
 
   Question :
   Soient $f,g$ deux fonctions définies sur $\Rr$. Quelles sont les assertions vraies ?
@@ -18,27 +39,35 @@ doc_to_text: |
   C. $\frac{f}{g^2}$ est une fonction définie sur $\Rr$
   D. $\sqrt{f+g}$ est une fonction définie sur $\Rr$
 
-  Réponse : A, B
+  Réponse : $f^2 \times g$ est une fonction définie sur $\Rr$
 
 
   Question :
-  Parmi les affirmations suivantes, lesquelles n'ont aucun sens (c'est-à-dire ne sont pas correctes au niveau du langage mathématique) ?
-
-  A. Dans certaines circonstances, on a $\mathbb{P}(A\cup B)=\mathbb{P}(A)\cup\mathbb{P}(B)$.
-  B. Si $C$ est un autre événement impliqué par $A$, on a $A\cup C\cap B = A\cap B$.
-  C. On a $A\subset A+B$.
-  D. $\{A,B\} \subset \Omega$.
-
-  Réponse : A, B, C, D
-
-  Question : 
-  Etant donné que $\displaystyle f(3)=1$ et $f'(3)=5$. Une équation de la tangente à $\mathcal{C}_f$ au point $(3,1)$ est :
-  A. $y=1(x-3)+5=x+2$
-  B. $y=1(x-3)-5=x-8$
-  C. $y=5(x-3)-1=5x-16$
+  Etant donné que $\displaystyle f(3)=1$ et $f'(3)=5$. Une équation de la tangente à $\mathcal{C}_f$ au point $(3,1)$ est : 
+  
+  A. $y=1(x-3)+5=x+2$ 
+  B. $y=1(x-3)-5=x-8$ 
+  C. $y=5(x-3)-1=5x-16$ 
   D. $y=5(x-3)+1=5x-14$
 
-  Réponse : D
+  Réponse : $y=5(x-3)+1=5x-14$
+
+
+  Question :
+  On considère les deux applications suivantes : 
+  $$\begin{array}{rccc}f:&\Rr&\to&\Rr\\
+  & x&\to & \sin x \end{array} \quad \mbox{et} \quad \begin{array}{rccc}g:&\Rr^2&\to&\Rr^2\\
+  & (x,y)&\to &(y,x). \end{array}$$
+
+  Quelles sont les assertions vraies ?
+
+  A. $f(0)=0$
+  B. $f$ est une application linéaire
+  C. $g(x,y)=g(y,x)$, pour tout $(x,y) \in \Rr^2$
+  D. $g$ est une application linéaire
+
+  Réponse : $f(0)=0$
+
 
   Question :
   {{question}}
@@ -50,6 +79,7 @@ doc_to_text: |
 
   Réponse :
 
+  
 # Required for multiple_choice output_type
 doc_to_choice: "{{ targets.choices }}"
 
@@ -57,7 +87,7 @@ doc_to_choice: "{{ targets.choices }}"
 doc_to_target: 0
 
 # TruthfulQA-style MC2 metric: log-likelihood → probability mass
-process_results: !function utils.process_results_mc2
+process_results: !function utils.process_results
 
 metric_list:
   - metric: acc

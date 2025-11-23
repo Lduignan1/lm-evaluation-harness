@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def process_results_mc2(doc, results):
+def process_results(doc, results):
     ll, _ = zip(*results)
     ll = np.array(ll)
 
