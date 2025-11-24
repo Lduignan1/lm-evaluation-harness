@@ -11,7 +11,7 @@ def process_results(doc, results):
     # Normalize probabilities.
     probs_norm = probs / np.sum(probs)
 
-    labels = np.array(doc["mc2_targets"]["labels"])
+    labels = np.array(doc["targets"]["labels"])
     # Compute the normalized probability mass for the correct answer.
     pm_true = np.sum(probs_norm[labels == 1])
 
