@@ -73,7 +73,7 @@ doc_to_text: |
   Question :
   {{ question }}
 
-  {% for c in choices %}
+  {% for c in targets.choices %}
   {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[loop.index0] }}. {{ c }}
   {% endfor %}
 
