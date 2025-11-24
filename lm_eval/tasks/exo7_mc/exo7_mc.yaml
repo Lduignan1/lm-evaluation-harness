@@ -1,7 +1,8 @@
 task: exo7_mc
-dataset_path: LDuignan1/exo7_mc
+dataset_path: arrow
 dataset_kwargs: 
-  data_dir: /home/data/dataset/openllm/exo7/huggingface/exo7_mc
+  data_files: 
+    test: /home/data/dataset/openllm/exo7/huggingface/exo7_mc/test/data-00000-of-00001.arrow
 
 output_type: multiple_choice
 test_split: test
