@@ -71,11 +71,10 @@ doc_to_text: |
 
 
   Question :
-  {{question}}
+  {{ question }}
 
-  {% set letters = ["A","B","C","D","E"] %}
-  {% for c in targets.choices %}
-  {{ letters[loop.index0] }}. {{ c }}
+  {% for c in choices %}
+  {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[loop.index0] }}. {{ c }}
   {% endfor %}
 
   Réponse :
