@@ -66,7 +66,9 @@ doc_to_text: |
 doc_to_choice: "{{ targets.choices }}"
 
 # Not used (scoring handled in process_results)
-doc_to_target: 0
+# doc_to_target: 0
+
+doc_to_target: "{{ targets.choices | length | range }}"
 
 # TruthfulQA-style MC2 metric: log-likelihood → probability mass
 process_results: !function utils.process_results
