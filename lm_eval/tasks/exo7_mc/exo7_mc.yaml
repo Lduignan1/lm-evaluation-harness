@@ -80,8 +80,9 @@ metric_list:
 
 
 filter_list:
-  - name: range
-    function: range
+  - filter:
+      name: range
+      function: range
 
 metadata:
   version: 1.0
