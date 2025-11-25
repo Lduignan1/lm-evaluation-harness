@@ -10,6 +10,7 @@ test_split: test
 
 doc_to_text: |
 
+  {% raw %}
   Pour les questions suivantes, il peut y avoir plusieurs bonnes réponses. Choisissez une seule bonne réponse possible.
 
   Question :
@@ -48,6 +49,7 @@ doc_to_text: |
   D. $g$ est une application linéaire
 
   Réponse : $f(0)=0$
+  {% endraw %}
 
 
   Question :
