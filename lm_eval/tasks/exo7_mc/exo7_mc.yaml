@@ -1,9 +1,9 @@
 task: exo7_mc
-dataset_path: arrow
-dataset_kwargs: 
-  data_files: 
-    test: /home/data/dataset/openllm/exo7/huggingface/test/data-00000-of-00001.arrow
-
+# dataset_path: arrow
+# dataset_kwargs: 
+#   data_files: 
+#     test: /home/data/dataset/openllm/exo7/huggingface/test/data-00000-of-00001.arrow
+dataset_path: Lduignan1/exo7_mc
 output_type: multiple_choice
 test_split: test
 
@@ -56,12 +56,10 @@ doc_to_text: |
   {{ question }}
 
   {% for c in targets.choices %}
-  {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[loop.index0] }}. {{ c }}
+  {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[loop.index0] }} {{ c }}
   {% endfor %}
 
   Réponse :
-
-  
 # Required for multiple_choice output_type
 doc_to_choice: "{{ targets.choices }}"
 
