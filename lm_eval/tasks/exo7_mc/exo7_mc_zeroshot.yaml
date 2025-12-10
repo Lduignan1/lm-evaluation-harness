@@ -11,8 +11,6 @@ test_split: test
 
 
 doc_to_text: |
-
-  {% raw %}
   Pour la questions suivante, il peut y avoir plusieurs bonnes réponses. Choisissez une seule bonne réponse possible.
 
   Question :
