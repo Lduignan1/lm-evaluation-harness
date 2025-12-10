@@ -1,0 +1,53 @@
+tag: 
+  - exo7_mc
+task: exo7_mc_zeroshot
+# dataset_path: arrow
+# dataset_kwargs: 
+#   data_files: 
+#     test: /home/data/dataset/openllm/exo7/huggingface/test/data-00000-of-00001.arrow
+dataset_path: Lduignan1/exo7_mc
+output_type: multiple_choice
+test_split: test
+
+
+doc_to_text: |
+
+  {% raw %}
+  Pour la questions suivante, il peut y avoir plusieurs bonnes réponses. Choisissez une seule bonne réponse possible.
+
+  Question :
+  {{ question }}
+
+  {% for c in targets.choices %}
+  {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[loop.index0] }} {{ c }}
+  {% endfor %}
+
+  Réponse :
+# Required for multiple_choice output_type
+doc_to_choice: "{{ targets.choices }}"
+
+# Not used (scoring handled in process_results)
+doc_to_target: 0
+
+# doc_to_target: "{{ targets.choices | length | range }}"
+
+# TruthfulQA-style MC2 metric: log-likelihood → probability mass
+process_results: !function utils.process_results
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+
+
+# filter_list:
+#   - name: range 
+#     filter:     
+#       - function: range
+
+metadata:
+  version: 1.0
+  description: >
+    French math multi-label multiple-choice benchmark using 
+    few-shot prompting and TruthfulQA-style MC2 probability scoring.
+

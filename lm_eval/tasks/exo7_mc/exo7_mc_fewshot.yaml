@@ -1,4 +1,6 @@
-task: exo7_mc
+tag: 
+  - exo7_mc
+task: exo7_mc_fewshot
 # dataset_path: arrow
 # dataset_kwargs: 
 #   data_files: 
