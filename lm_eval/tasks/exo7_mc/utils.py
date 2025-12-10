@@ -2,6 +2,11 @@ import numpy as np
 
 
 def process_results(doc, results):
+
+    if not results:
+        # Return 0.0 for accuracy if no scores were generated for this document
+        return {"acc": 0.0}
+
     ll, _ = zip(*results)
     ll = np.array(ll)
 
