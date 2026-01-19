@@ -1,0 +1,6 @@
+"dataset_name": "troisième"
+"description": "The following are multiple choice questions (with answers) in math at French secondary school level troisième.\n\
+  \n"
+"include": "_default_template_yaml"
+"task": "mathalea_troisieme"
+"task_alias": "troisieme"

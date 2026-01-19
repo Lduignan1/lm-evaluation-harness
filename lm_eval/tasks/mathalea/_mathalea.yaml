@@ -1,0 +1,12 @@
+group: mathalea
+task:
+  - mathalea_premiere
+  - mathalea_troisieme
+  - mathalea_terminale
+  - mathalea_quatrieme
+  - mathalea_cinquieme
+aggregate_metric_list:
+  - metric: acc
+    weight_by_size: True
+metadata:
+  version: 1.0

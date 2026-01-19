@@ -1,0 +1,6 @@
+"dataset_name": "terminale"
+"description": "The following are multiple choice questions (with answers) in math at French secondary school level terminale.\n\
+  \n"
+"include": "_default_template_yaml"
+"task": "mathalea_terminale"
+"task_alias": "terminale"

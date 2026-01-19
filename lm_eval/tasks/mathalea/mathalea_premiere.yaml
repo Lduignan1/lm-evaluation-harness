@@ -1,0 +1,6 @@
+"dataset_name": "première"
+"description": "The following are multiple choice questions (with answers) in math at French secondary school level première.\n\
+  \n"
+"include": "_default_template_yaml"
+"task": "mathalea_premiere"
+"task_alias": "premiere" 
