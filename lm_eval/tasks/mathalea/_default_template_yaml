@@ -4,8 +4,13 @@ fewshot_split: dev
 fewshot_config:
   sampler: first_n
 output_type: multiple_choice
-doc_to_text: "{{question.strip()}}\nA. {{choices[0]}}\nB. {{choices[1]}}\nC. {{choices[2]}}\nD. {{choices[3]}}\nAnswer:"
-doc_to_choice: ["A", "B", "C", "D"]
+doc_to_text: |-
+  {{question.strip()}}
+  {% for choice in choices -%}
+  {{ ['A', 'B', 'C', 'D', 'E'][loop.index0] }}. {{choice}}
+  {% endfor -%}
+  Answer:
+doc_to_choice: "{{ ['A', 'B', 'C', 'D', 'E'][:choices|length] }}"
 doc_to_target: answerKey
 metric_list:
   - metric: acc
