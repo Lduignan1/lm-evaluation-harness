@@ -1,17 +1,17 @@
 dataset_path: OpenLLM-BPI/MathAleaMCQ
 test_split: test
-fewshot_split: dev
-fewshot_config:
-  sampler: first_n
+# fewshot_split: dev
+# fewshot_config:
+#   sampler: first_n
 output_type: multiple_choice
 doc_to_text: |-
   {{question.strip()}}
   {% for choice in choices -%}
-  {{ ['A', 'B', 'C', 'D', 'E'][loop.index0] }}. {{choice}}
+  {{ 'ABCDE'[loop.index0] }}. {{choice}}
   {% endfor -%}
   Réponse :
-doc_to_choice: "{{ ['A', 'B', 'C', 'D', 'E'][:choices|length] }}"
-doc_to_target: answerKey
+doc_to_choice: "{{ 'ABCDE'[:choices|length] | list }}"
+doc_to_target: "{{ answerKey }}"
 metric_list:
   - metric: acc
     aggregation: mean
