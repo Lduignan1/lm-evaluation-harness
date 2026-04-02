@@ -13,7 +13,7 @@ test_split: train
 dataset_path: json 
 dataset_name: null
 dataset_kwargs:
-  data_files: my_eval_task/mcq_lm_eval_data.jsonl
+  data_files: /lustre/fshomisc/home/rech/genqsn01/uwe96tb/code/lm-evaluation-harness/lm_eval/tasks/my_eval_task/mcq_lm_eval_data.jsonl
 
 # ----------------------------------------------------
 # Prompt Templating
