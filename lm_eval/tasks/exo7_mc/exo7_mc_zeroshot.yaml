@@ -5,7 +5,7 @@ task: exo7_mc_zeroshot
 # dataset_kwargs: 
 #   data_files: 
 #     test: /home/data/dataset/openllm/exo7/huggingface/test/data-00000-of-00001.arrow
-dataset_path: Lduignan1/exo7_mc
+dataset_path: OpenLLM-BPI/Exo7
 output_type: multiple_choice
 test_split: test
 
